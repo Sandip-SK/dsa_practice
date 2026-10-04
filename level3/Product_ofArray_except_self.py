@@ -16,3 +16,16 @@
 # O(n) time
 # Do not use division
 # Aim for O(1) extra space excluding the output array.
+def product_except_self(nums):
+    result = [1] * len(nums)
+
+    # left → right
+    for i in range(1, len(nums)):
+        result[i] = result[i - 1] * nums[i - 1]
+    # right → left
+    right_product = 1
+    for i in range(len(nums) - 1, -1, -1):
+        result[i] *= right_product
+        right_product *= nums[i]
+
+    return result
