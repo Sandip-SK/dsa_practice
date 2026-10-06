@@ -40,3 +40,15 @@ def is_overloaded(cpu):
         else:
             streak = 0
     return False
+
+def count_overload_events(cpu):
+    streak = 0
+    num_overload_events = 0
+    for load in cpu:
+        if load > 90:
+            streak += 1
+            if streak==3:
+                num_overload_events += 1
+        else:
+            streak = 0
+    return num_overload_events
